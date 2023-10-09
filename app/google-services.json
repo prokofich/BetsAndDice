@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "175909438063",
+    "project_id": "betsdice",
+    "storage_bucket": "betsdice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175909438063:android:f8ebacbebb503f19a5039a",
+        "android_client_info": {
+          "package_name": "com.example.betsdice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1HPDcyTdg3nB3q7SfDoRWzcMyVKQBe58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
