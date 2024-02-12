@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 class GameFragment : Fragment() {
 
     private var binding: FragmentGameBinding? = null
-
     private var repository = Repository()
 
     override fun onCreateView(
@@ -41,20 +40,20 @@ class GameFragment : Fragment() {
         repository.job.cancel()
 
         //показ количества денег
-        binding!!.idGameTvCountMoney.text = "${repository.getMoneyInCashAccount()}"
+        binding?.idGameTvCountMoney?.text = "${repository.getMoneyInCashAccount()}"
 
         //загрузка фоновой картинки
-        binding!!.idGameImg.load(url_image_settings_and_game){
+        binding?.idGameImg?.load(url_image_settings_and_game){
             scale(Scale.FILL)
         }
 
         //загрузка картинки монеты
-        binding!!.idGameIvMoneta.load(url_image_money){
+        binding?.idGameIvMoneta?.load(url_image_money){
             scale(Scale.FIT)
         }
 
         //выбор левых игральных костей
-        binding!!.idGameButtonLeftDice.setOnClickListener {
+        binding?.idGameButtonLeftDice?.setOnClickListener {
             if (!repository.job.isActive){
                 repository.job = CoroutineScope(Dispatchers.Main).launch {
                     repository.getRandomUrlImageDice()
@@ -70,7 +69,7 @@ class GameFragment : Fragment() {
         }
 
         //выбор правых игральных костей
-        binding!!.idGameButtonRight.setOnClickListener {
+        binding?.idGameButtonRight?.setOnClickListener {
             if (!repository.job.isActive){
                 repository.job = CoroutineScope(Dispatchers.Main).launch {
                     repository.getRandomUrlImageDice()
@@ -86,7 +85,7 @@ class GameFragment : Fragment() {
         }
 
         //выбор ничьи
-        binding!!.idGameButtonDraw.setOnClickListener {
+        binding?.idGameButtonDraw?.setOnClickListener {
             if (!repository.job.isActive){
                 repository.job = CoroutineScope(Dispatchers.Main).launch {
                     repository.getRandomUrlImageDice()
@@ -102,22 +101,22 @@ class GameFragment : Fragment() {
         }
 
         //закончить игру и забрать выигрыш
-        binding!!.idGameButtonTakeMoney.setOnClickListener {
+        binding?.idGameButtonTakeMoney?.setOnClickListener {
             if(!repository.job.isActive){
                 repository.shortToast(requireContext(),"you have earned ${repository.winMoney} coins")
                 repository.addMoneyInCashAccount(repository.winMoney)
-                binding!!.idGameTvCountMoney.text = "${repository.getMoneyInCashAccount()}"
+                binding?.idGameTvCountMoney?.text = "${repository.getMoneyInCashAccount()}"
                 repository.job.cancel()
                 visibleViewEndGame()
             }
         }
 
         //кнопка начала игры
-        binding!!.idGameButtonPlay.setOnClickListener {
+        binding?.idGameButtonPlay?.setOnClickListener {
             //проверка нехватки денег
             if(repository.getMoneyInCashAccount() >= 25){
                 repository.minusMoneyInCashAccount(25)
-                binding!!.idGameTvCountMoney.text = "${repository.getMoneyInCashAccount()}"
+                binding?.idGameTvCountMoney?.text = "${repository.getMoneyInCashAccount()}"
                 visibleViewStartGame()
                 loadImageQuestion()
                 repository.shortToast(requireContext(),"where will there be more points?click on the desired button")
@@ -144,44 +143,44 @@ class GameFragment : Fragment() {
 
     //функция установки видимости кнопки начала игры и цены
     private fun visibleViewStartGame(){
-        binding!!.idGameButtonPlay.isVisible = false
-        binding!!.idGameTvPrice.isVisible = false
-        binding!!.idGameCs1.isVisible = true
-        binding!!.idGameCs2.isVisible = true
-        binding!!.idGameCsResult.isVisible = true
-        binding!!.idGameButtonLeftDice.isVisible = true
-        binding!!.idGameButtonDraw.isVisible = true
-        binding!!.idGameButtonRight.isVisible = true
-        binding!!.idGameButtonTakeMoney.isVisible = true
+        binding?.idGameButtonPlay?.isVisible = false
+        binding?.idGameTvPrice?.isVisible = false
+        binding?.idGameCs1?.isVisible = true
+        binding?.idGameCs2?.isVisible = true
+        binding?.idGameCsResult?.isVisible = true
+        binding?.idGameButtonLeftDice?.isVisible = true
+        binding?.idGameButtonDraw?.isVisible = true
+        binding?.idGameButtonRight?.isVisible = true
+        binding?.idGameButtonTakeMoney?.isVisible = true
     }
 
     //функция установки видимости игровых показателей
     private fun visibleViewEndGame(){
-        binding!!.idGameButtonPlay.isVisible = true
-        binding!!.idGameTvPrice.isVisible = true
-        binding!!.idGameCs1.isVisible = false
-        binding!!.idGameCs2.isVisible = false
-        binding!!.idGameCsResult.isVisible = false
-        binding!!.idGameButtonLeftDice.isVisible = false
-        binding!!.idGameButtonDraw.isVisible = false
-        binding!!.idGameButtonRight.isVisible = false
-        binding!!.idGameButtonTakeMoney.isVisible = false
+        binding?.idGameButtonPlay?.isVisible = true
+        binding?.idGameTvPrice?.isVisible = true
+        binding?.idGameCs1?.isVisible = false
+        binding?.idGameCs2?.isVisible = false
+        binding?.idGameCsResult?.isVisible = false
+        binding?.idGameButtonLeftDice?.isVisible = false
+        binding?.idGameButtonDraw?.isVisible = false
+        binding?.idGameButtonRight?.isVisible = false
+        binding?.idGameButtonTakeMoney?.isVisible = false
     }
 
     //функция загрузки картинок со знаком вопроса
     private fun loadImageQuestion(){
-        binding!!.idGameIvDice1.load(url_image_question){scale(Scale.FIT)}
-        binding!!.idGameIvDice2.load(url_image_question){scale(Scale.FIT)}
-        binding!!.idGameIvDice3.load(url_image_question){scale(Scale.FIT)}
-        binding!!.idGameIvDice4.load(url_image_question){scale(Scale.FIT)}
+        binding?.idGameIvDice1?.load(url_image_question){scale(Scale.FIT)}
+        binding?.idGameIvDice2?.load(url_image_question){scale(Scale.FIT)}
+        binding?.idGameIvDice3?.load(url_image_question){scale(Scale.FIT)}
+        binding?.idGameIvDice4?.load(url_image_question){scale(Scale.FIT)}
     }
 
     //функция загрузки картинок игральных костей
     private fun loadImageAllDice(){
-        binding!!.idGameIvDice1.load(repository.listDice[0]){scale(Scale.FIT)}
-        binding!!.idGameIvDice2.load(repository.listDice[1]){scale(Scale.FIT)}
-        binding!!.idGameIvDice3.load(repository.listDice[2]){scale(Scale.FIT)}
-        binding!!.idGameIvDice4.load(repository.listDice[3]){scale(Scale.FIT)}
+        binding?.idGameIvDice1?.load(repository.listDice[0]){scale(Scale.FIT)}
+        binding?.idGameIvDice2?.load(repository.listDice[1]){scale(Scale.FIT)}
+        binding?.idGameIvDice3?.load(repository.listDice[2]){scale(Scale.FIT)}
+        binding?.idGameIvDice4?.load(repository.listDice[3]){scale(Scale.FIT)}
     }
 
     //функция правильного ответа
@@ -191,8 +190,8 @@ class GameFragment : Fragment() {
         repository.winMoney += 20
         repository.level += 1
         repository.checkNewRecord()
-        binding!!.idGameCsResultTvMoney.text = "won:${repository.winMoney} coins"
-        binding!!.idGameCsResultTvLvl.text = "lvl ${repository.level}"
+        binding?.idGameCsResultTvMoney?.text = "won:${repository.winMoney} coins"
+        binding?.idGameCsResultTvLvl?.text = "lvl ${repository.level}"
         delay(4000)
         loadImageQuestion()
     }

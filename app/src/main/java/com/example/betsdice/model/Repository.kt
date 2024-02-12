@@ -2,7 +2,6 @@ package com.example.betsdice.model
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.widget.Toast
 import com.example.betsdice.model.constant.MAIN
 import com.example.betsdice.model.constant.listMoneyForReplenish
@@ -10,7 +9,6 @@ import com.example.betsdice.model.constant.listUrlImageDice
 import com.example.betsdice.model.constant.mapDice
 import kotlinx.coroutines.Job
 import java.util.Calendar
-import java.util.Locale
 
 class Repository {
 
@@ -21,15 +19,14 @@ class Repository {
     var winMoney = 0
     var level = 0
 
-    fun createJsonFile(namePhone:String,locale:String,id:String): String {
-        val json = """
+    fun createJsonFile(namePhone: String, locale: String, id: String): String {
+        return """
                       {
                        "phone_name": "$namePhone",
                        "locale": "$locale",
                        "unique": "$id"
                       }
                       """.trimIndent()
-        return json
     }
 
     //функция проверки победы левых костей

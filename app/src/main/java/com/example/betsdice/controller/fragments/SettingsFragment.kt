@@ -39,33 +39,29 @@ class SettingsFragment : Fragment() {
         }
 
         //показ рекорда
-        binding!!.idSettingsTvRecord.text = "-your record: ${repository.getRecordInGame()} lvl-"
+        binding?.idSettingsTvRecord?.text = "-your record: ${repository.getRecordInGame()} lvl-"
 
         //показ количества денег
-        binding!!.idSettingsScMoneyTvMoney.text = "money:${repository.getMoneyInCashAccount()}"
-
-        /*
-        добавить загрузку текста правил
-         */
+        binding?.idSettingsScMoneyTvMoney?.text = "money:${repository.getMoneyInCashAccount()}"
 
         //загрузка фоновой картинки
-        binding!!.idSettingsImg.load(url_image_settings_and_game){
+        binding?.idSettingsImg?.load(url_image_settings_and_game){
             scale(Scale.FILL)
         }
 
         //загрузка картинки монеты
-        binding!!.idSettingsScMoneyIvMoney.load(url_image_money){
+        binding?.idSettingsScMoneyIvMoney?.load(url_image_money){
             scale(Scale.FIT)
         }
 
         //кнопка пополнения счета
-        binding!!.idSettingsCsMoneyButton.setOnClickListener {
+        binding?.idSettingsCsMoneyButton?.setOnClickListener {
             if(repository.checkTodayAndLastDay()){
                 val money = repository.getRandomMoneyForReplenish()
                 repository.addMoneyInCashAccount(money)
                 repository.shortToast(requireContext(),"$money coins")
                 repository.setLastDay(repository.getCurrentDate())
-                binding!!.idSettingsScMoneyTvMoney.text = "money:${repository.getMoneyInCashAccount()}"
+                binding?.idSettingsScMoneyTvMoney?.text = "money:${repository.getMoneyInCashAccount()}"
             }else{
                 repository.shortToast(requireContext(), "you will be able to top up your account the next day")
             }
